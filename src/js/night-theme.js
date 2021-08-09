@@ -6,6 +6,8 @@ refs.themeSwitchControl.addEventListener('change', handleChangeTheme);
 
 restoreTheme();
 
+// setDefaultTheme();
+
 function handleChangeTheme() {
   refs.documentBody.classList.toggle('dark-theme');
 
@@ -40,5 +42,13 @@ function restoreTheme() {
 }
 
 function getCurrentTheme() {
-  return localStorage.getItem(themeKey);
+  let currentThemeValue = null;
+
+  if (!localStorage.getItem(themeKey)) {
+    currentThemeValue = localStorage.setItem(themeKey, 'light');
+  } else {
+    currentThemeValue = localStorage.getItem(themeKey);
+  }
+
+  return currentThemeValue;
 }
